@@ -1,0 +1,50 @@
+{
+  "Comment": "A description of my state machine",
+  "StartAt": "glu_hq_finan_hq_zeus_exchange_rates_prd_001",
+  "States": {
+    "glu_hq_finan_hq_zeus_exchange_rates_prd_001": {
+      "Type": "Task",
+      "Resource": "arn:aws:states:::glue:startJobRun.sync",
+      "Parameters": {
+        "JobName": "glu_hq_finan_hq_zeus_exchange_rates_prd_001"
+      },
+      "Next": "StartCrawler-crwl-hq-raw-prd-finan-zeus-exchange-rates"
+    },
+    "StartCrawler-crwl-hq-raw-prd-finan-zeus-exchange-rates": {
+      "Type": "Task",
+      "Parameters": {
+        "Name": "crwl-hq-raw-prd-finan-zeus-exchange-rates"
+      },
+      "Resource": "arn:aws:states:::aws-sdk:glue:startCrawler",
+      "Next": "GetCrawler-crwl-hq-raw-prd-finan-zeus-exchange-rates"
+    },
+    "GetCrawler-crwl-hq-raw-prd-finan-zeus-exchange-rates": {
+      "Type": "Task",
+      "Parameters": {
+        "Name": "crwl-hq-raw-prd-finan-zeus-exchange-rates"
+      },
+      "Resource": "arn:aws:states:::aws-sdk:glue:getCrawler",
+      "Next": "Choice"
+    },
+    "Choice": {
+      "Type": "Choice",
+      "Choices": [
+        {
+          "Variable": "$.Crawler.State",
+          "StringEquals": "RUNNING",
+          "Next": "Wait"
+        }
+      ],
+      "Default": "Pass"
+    },
+    "Wait": {
+      "Type": "Wait",
+      "Seconds": 5,
+      "Next": "GetCrawler-crwl-hq-raw-prd-finan-zeus-exchange-rates"
+    },
+    "Pass": {
+      "Type": "Pass",
+      "End": true
+    }
+  }
+}
