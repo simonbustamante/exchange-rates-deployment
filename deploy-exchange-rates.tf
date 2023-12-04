@@ -2,20 +2,20 @@
 #### #### #### #### #### #### #### #### #### #### #### #### 
 #### #### #### #### #### #### #### #### #### #### #### #### 
 #### #### #### #### #### #### #### #### #### #### #### #### 
-#### aws.bi.LakeH.hq.prd #525196274797 #### #### ####
+#### aws.bi.LakeH.hq.prd #<ACCOUNT-ID> #### #### ####
 #### #### #### #### #### #### #### #### #### #### #### #### 
 #### #### #### #### #### #### #### #### #### #### #### #### 
 #### #### #### #### #### #### #### #### #### #### #### #### 
 
 locals {
-  profile = "525196274797_AWSAdministratorAccess"
+  profile = "<ACCOUNT-ID>_AWSAdministratorAccess"
   region = "us-east-1"
   file_cp_to_bucket = "glu_hq_finan_hq_zeus_exchange_rates_prd_001"
   bucket_install_script = "s3-hq-raw-prd-intec"
   prefix_install_script = "app_glu_hq_finan_hq_zeus_exchange_rates_prd_001"
   bucket_to_crawl = "s3-hq-std-prd-finan"
   prefix_to_crawl = "xchng_rts"
-  svc_role_arn = "arn:aws:iam::525196274797:role/svc-role-data-mic-development-integrations"
+  svc_role_arn = "arn:aws:iam::<ACCOUNT-ID>:role/svc-role-data-mic-development-integrations"
   crawler_name = "crwl-hq-raw-prd-finan-zeus-exchange-rates"
   db_target = "hq-std-prd-finan-link"
   step_function_name = "stp-fnc-hq-finan-zeus-exchange-prd"
