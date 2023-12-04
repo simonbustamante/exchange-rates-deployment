@@ -7,7 +7,7 @@ This README outlines the setup and configuration for an AWS-based data processin
 
 ### AWS Terraform Setup
 - **Profile and Region Configuration**: 
-  - AWS Profile: `525196274797_AWSAdministratorAccess`
+  - AWS Profile: `<ACCOUNT-ID>_AWSAdministratorAccess`
   - AWS Region: `us-east-1`
 
 - **S3 Buckets and Prefixes**:
@@ -17,7 +17,7 @@ This README outlines the setup and configuration for an AWS-based data processin
   - Prefix for data crawl: `xchng_rts`
 
 - **AWS Glue Settings**:
-  - Glue Job Role ARN: `arn:aws:iam::525196274797:role/svc-role-data-mic-development-integrations`
+  - Glue Job Role ARN: `arn:aws:iam::<ACCOUNT-ID>:role/svc-role-data-mic-development-integrations`
   - Database Target: `hq-std-prd-finan-link`
   - Glue Version: `4.0`
   - Python Version: `3`
